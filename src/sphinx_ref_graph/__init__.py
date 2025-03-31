@@ -304,6 +304,8 @@ def write_html(app: Sphinx,exc):
             else:
                 weight_list[link_list.index(link)] += 1
 
+    print("!!! Ref Graph !!! write_html >> temp file read")
+
     # clean up
     node_list_old = node_list.copy()
     tag_list_old = tag_list.copy()
@@ -313,6 +315,9 @@ def write_html(app: Sphinx,exc):
         if not ignore_list[i]:
             node_list.append(node)
             tag_list.append(tag_list_old[i])
+
+    print("!!! Ref Graph !!! write_html >> clean up finished")
+
     color_dict = {}
     unique_tags = []
     for tag in tag_list:
@@ -326,6 +331,8 @@ def write_html(app: Sphinx,exc):
         else:
             color_dict[tag] = FIXED_COLORS[next_color]
             next_color = (next_color + 1) % len(FIXED_COLORS)
+
+    print("!!! Ref Graph !!! write_html >> colors set")
 
     # check if a central group node must be created
     # if so,
@@ -362,10 +369,13 @@ def write_html(app: Sphinx,exc):
                 if node not in remove_nodes:
                     node_list.append(node)
                     tag_list.append(tag_list_old[ni])
-             
+
+    print("!!! Ref Graph !!! write_html >> group nodes created if needed")         
 
     source_list = [link[0] for link in link_list]
     target_list = [link[1] for link in link_list]
+
+    print("!!! Ref Graph !!! write_html >> source and target list created")
 
     # try to extract (first) h1 header from html file
     titles = []
@@ -384,6 +394,8 @@ def write_html(app: Sphinx,exc):
                 title = title.replace("\\vect{x}","x")
                 titles.append(title)
                 break
+
+    print("!!! Ref Graph !!! write_html >> titles extracted from html")
 
     source_string = "?".join(source_list)
     target_string = "?".join(target_list)
