@@ -397,11 +397,14 @@ def write_html(app: Sphinx,exc):
     
     link_dicts = []
     for i,source in enumerate(source_list):
-        link_dict = {"source_label" : source,
-                     "source" : titles.index(source),
-                     "target_label" : target_list[i],
-                     "target" : titles.index(target_list[i])}
-        link_dicts.append(link_dict)
+        try:
+            link_dict = {"source_label" : source,
+                         "source" : titles.index(source),
+                         "target_label" : target_list[i],
+                         "target" : titles.index(target_list[i])}
+            link_dicts.append(link_dict)
+        except:
+            pass
 
     import_html = os.path.join(os.path.dirname(__file__), 'static', "ref_graph.html")
     with open(import_html,'r') as html:
