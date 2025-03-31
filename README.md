@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This package contains a Sphinx extension for generating and inserting an interactive graph based on internal references and the table of content. A user can tweak the graph to suit their needs.
+This package contains a Sphinx extension for generating and inserting an interactive graph based on internal references and the table of content. A user can tweak the graph to suit their needs. The graph has clickable nodes that link to pages within the Jupyter book.
 
 ## What does it do?
 
-Based on the internal references, the table of content, the directives mentioned below and the provided extension options, a graph is generated, where each node represents a page within the book and can be interacted with.
+Based on the internal references, the table of content, the directives mentioned below and the provided extension options, a graph is generated, where each node represents a page within the book and each link between two nodes represents a reference between the corresponding pages.
 
 Each node/page can be assigned a tag. All nodes with the same tag will have the same color and, if three or more nodes have the same tag, an extended convex hull will be drawn around nodes with the same tag.
 
@@ -39,9 +39,9 @@ Make sure that the package is included in your project's `requirements.txt` to t
 git+https://github.com/TeachBooks/Sphinx-ref-graph.git
 ```
 
-**Step 3: Enable in `conf.py`**
+**Step 3: Enable in `_config.yml`**
 
-In your `conf.py` file, add the extension to the list of Sphinx extra extensions:
+In your `_config.yml` file, add the extension to the list of Sphinx extra extensions:
 ```
 sphinx: 
     extra_extensions:
@@ -56,7 +56,7 @@ sphinx:
 
 ## Configuration
 
-The extension provides several configuration values, which can be added to `conf.py`:
+The extension provides several configuration values, which can be added to `_config.yml`:
 
 ```yaml
 sphinx: 
