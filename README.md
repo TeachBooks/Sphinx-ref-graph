@@ -105,7 +105,7 @@ An explination of each configuration value:
     "#009B77", # Forrest Green
     "#A50034", # Burgundy
     ```
-    The order in which the tags are encountered define order in which the colors are selected.
+    The order in which the tags are encountered define the order in which the colors are selected.
   - An example:
     ```yaml
     ref_graph_tag_color: {'Eigenvalues':'#900bee','Matrix operations':'#0cd734'}
