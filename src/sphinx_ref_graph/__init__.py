@@ -366,7 +366,7 @@ def write_html(app: Sphinx,exc):
     titles = []
     for node in node_list:
         if '.html' not in node:
-            titles.append(node)
+            titles.append(node.strip())
             continue
         html_file = os.path.join(app.builder.outdir, node)
         with open(html_file,'r',errors='surrogateescape') as html:
@@ -374,7 +374,7 @@ def write_html(app: Sphinx,exc):
         soup = BeautifulSoup(html_data, 'html.parser')
         title = soup.find('title').string
         title = title[:title.find(u'\u2014')]
-        titles.append(title)
+        titles.append(title.strip())
     
     source_string = "????????".join(source_list)
     target_string = "????????".join(target_list)
