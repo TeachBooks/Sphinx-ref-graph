@@ -6,7 +6,7 @@ This package contains a Sphinx extension for generating and inserting an interac
 
 ## What does it do?
 
-Based on the internal references, the table of content, the directives mentioned below and thre provided extension options, a graph is generated, where each node represent a page within the book and each link between two nodes represents a reference between the corresponding pages.
+Based on the internal references, the table of content, the directives mentioned below and the provided extension options, a graph is generated, where each node represents a page within the book and each link between two nodes represents a reference between the corresponding pages.
 
 Each node/page can be assigned a tag. All nodes with the same tag will have the same color and, if three or more nodes have the same tag, an extended convex hull will be drawn around nodes with the same tag.
 
@@ -23,11 +23,11 @@ This extension provides several Sphinx directives:
 
 ## Installation
 
-To use this extenstion, follow these steps:
+To use this extension, follow these steps:
 
 **Step 1: Install the Package**
 
-Install the module `sphinx--ref-graph` package using `pip`:
+Install the module `sphinx-ref-graph` package using `pip`:
 ```
 pip install git+https://github.com/TeachBooks/Sphinx-ref-graph.git
 ```
@@ -77,7 +77,7 @@ sphinx:
         -
 ```
 
-An explination of each configuration value:
+An explanation of each configuration value:
 
 - `ref_graph_temp_file`: `ref_graph.temp` (_default_) or **string**:
   - The name of the (temporary) file used to store the information about nodes, tags and links.
@@ -91,7 +91,7 @@ An explination of each configuration value:
   - If `false`, all references defined in table of content of the book will be ignored, including hidden internal references.
   - For details about defining references in the table of content, see [Provided code](#provided-code).
 - `ref_graph_tag_color`: `{}` (_default_) or **Python dictionary**:
-  - The **Python dictionary** must be empty or contain key-value pairs of the form `'tag':'color'`, where `'color'` should be a Javascript recognised color, preferably a hex rgb color.
+  - The **Python dictionary** must be empty or contain key-value pairs of the form `'tag':'color'`, where `'color'` should be a JavaScript recognized color, preferably a hex RGB color.
   - If set to a non-empty dictionary, all nodes with the same tag will be given the provided color and for tags with three or more nodes the extended convex hull will be drawn in the same color.
   - For all tags that are not a key in this value, a color will be selected cyclically from the set of colors:
     ```python
@@ -105,7 +105,7 @@ An explination of each configuration value:
     "#009B77", # Forrest Green
     "#A50034", # Burgundy
     ```
-    The order in which the tags are encountered define the order in which the colors are selected.
+    The order in which the tags are encountered defines the order in which the colors are selected.
   - An example:
     ```yaml
     ref_graph_tag_color: {'Eigenvalues':'#900bee','Matrix operations':'#0cd734'}
@@ -140,7 +140,7 @@ The directive `refgraph` can be used to _show_ the generated graph. The graph do
 :::
 ```
 
-This directive has the addtional option `class`, of which the value will be added to the class of the iframe that is used to show the graph. Example code:
+This directive has the additional option `class`, of which the value will be added to the class of the iframe that is used to show the graph. Example code:
 
 ```md
 :::{refgraph}
@@ -187,7 +187,7 @@ This directive has no options, nor arguments, nor will show in the page itself. 
 ### Code in table of contents
 
 > [!CAUTION]
-> The next approach might be consired a _bad practice_. The authors of this extension claim in no way that this is not the case, but however have opted for this option to provide an alternative to a document-by-document basis. An alternative is provided by the above directives and configuration values.
+> The next approach might be considered a _bad practice_. The authors of this extension claim in no way that this is not the case, but however have opted for this option to provide an alternative to directives.
 
 Within the file `_toc.yml` a user can add a comment behind each line referencing a source file. If this comment contains the text
 ```yaml
@@ -244,7 +244,7 @@ Allowed keys for this dictionary are:
 Any subset of these keys can be used in the comment.
 
 > [!WARNING]
-> Do not use `{` and/or `}` inside the keys and values in the **Python dictionary**, as the comment will be parsed as a string, where the first `{` after `ref_graph:` will be mathced with the next `}`.
+> Do not use `{` and/or `}` inside the keys and values in the **Python dictionary**, as the comment will be parsed as a string, where the first `{` after `ref_graph:` will be matched with the next `}`.
 
 ## Examples and details
 
