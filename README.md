@@ -104,3 +104,16 @@ An explination of each configuration value:
   - In addition all other nodes with the same tag will be removed from the graph.
 
 ## Provided code
+
+### Directives
+
+#### `refgraph`
+
+The directive `refgraph` can be used to _show_ the generated graph. The graph does not depend on the location of this directive and will always be generated. Example code:
+
+```md
+:::{refgraph}
+:::
+```
+
+This directive has the addtional option `class`, of which the value will be added to the class of the iframe that is used to show the graph. Example code:
