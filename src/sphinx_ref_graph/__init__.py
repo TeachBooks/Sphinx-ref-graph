@@ -379,7 +379,8 @@ def write_html(app: Sphinx,exc):
                 title = title.replace("\\vect{x}","x")
                 titles.append(title)
                 break
-
+    
+    old_len = len(source_list)
     source_string = "?".join(source_list)
     target_string = "?".join(target_list)
     for i,node in enumerate(node_list):
@@ -387,6 +388,11 @@ def write_html(app: Sphinx,exc):
         target_string = target_string.replace(node,titles[i])
     source_list = source_string.split("?")
     target_list = target_string.split("?")
+
+    if len(source_list) != old_len:
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!! len diff !!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     # Create three json/dicts for direct input in JS
     node_dicts = []
