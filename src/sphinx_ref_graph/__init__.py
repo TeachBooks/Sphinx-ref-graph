@@ -6,6 +6,7 @@ from docutils.nodes import reference
 import os
 from sphinx.addnodes import number_reference
 import ast
+from bs4 import BeautifulSoup
 
 FIXED_COLORS = [
     "#6F1D77", # Light Purple
@@ -361,24 +362,19 @@ def write_html(app: Sphinx,exc):
     source_list = [link[0] for link in link_list]
     target_list = [link[1] for link in link_list]
 
-    # try to extract (first) h1 header from html file (disabled for now)
+    # try to extract title from html file
     titles = []
     for node in node_list:
-        # if '.html' not in node:
-        titles.append(node)
-        #     continue
-        # html_file = os.path.join(app.builder.outdir, node)
-        # with open(html_file,'r',errors='surrogateescape') as html:
-        #     lines = html.readlines()
-        # for line in lines:
-        #     line = line.encode('ascii', 'ignore').decode('ascii') # test for Tom
-        #     if "<h1" in line:
-        #         title = line[line.find("<h1")+3:]
-        #         title = title[title.find(">")+1:]
-        #         title = title[:title.find("<")]
-        #         title = title.replace("\\vect{x}","x")
-        #         titles.append(title)
-        #         break
+        if '.html' not in node:
+            titles.append(node)
+            continue
+        html_file = os.path.join(app.builder.outdir, node)
+        with open(html_file,'r',errors='surrogateescape') as html:
+            html_data = html.read()
+        soup = BeautifulSoup(html_data, 'html.parser')
+        title = soup.find('title').string
+        title = title[:title.find(u'\u2014')]
+        titles.append(title)
     
     source_string = "????????".join(source_list)
     target_string = "????????".join(target_list)
