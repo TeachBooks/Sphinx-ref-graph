@@ -87,7 +87,7 @@ An explination of each configuration value:
 - `ref_graph_toc_links`: `true` (_default_) or `false`:
   - If `true`, all references defined in table of content of the book will result in a link in the graph.
   - If `false`, all references defined in table of content of the book will be ignored, including hidden internal references.
-  - For details about defining references in the table of content, see [](sec:graph:code).
+  - For details about defining references in the table of content, see (sec:graph:code).
 - `ref_graph_tag_color`: `{}` (_default_) or **Python dictionary**:
   - The **Python dictionary** must be empty or contain key-value pairs of the form `'tag':'color'`, where `'color'` should be a Javascript recognised color, preferably a hex rgb color.
   - If set to a non-empty dictionary, all nodes with the same tag will be given the provided color and for tags with three or more nodes the extended convex hull will be drawn in the same color.
