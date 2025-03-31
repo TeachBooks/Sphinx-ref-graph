@@ -91,6 +91,10 @@ An explination of each configuration value:
 - `ref_graph_tag_color`: `{}` (_default_) or **Python dictionary**:
   - The **Python dictionary** must be empty or contain key-value pairs of the form `'tag':'color'`, where `'color'` should be a Javascript recognised color, preferably a hex rgb color.
   - If set to a non-empty dictionary, all nodes with the same tag will be given the provided color and for tags with three or more nodes the extended convex hull will be drawn in the same color.
+  - An example:
+    ```yaml
+    ref_graph_tag_color: {'Eigenvalues':'#900bee','Matrix operations':'#0cd734'}
+    ```
 - `ref_graph_remove_links`: `[]` (_default_) or **Python list**:
   - The **Python list** must contain **Python strings**, where each is of the form `"file1 -> file2"`.
   - In the above, `file1` and `file2` must be the paths to `html` files in the compiled book. The paths are assumed to be relative to the main location of the html files of the compiled book.
@@ -123,3 +127,31 @@ This directive has the addtional option `class`, of which the value will be adde
 :class: dark-light
 :::
 ```
+
+#### `refgraphtag`
+
+The directive `refgraphtag` can be used to assign a tag to a page, which will be used in the graph to group nodes together. Example code:
+
+```md
+:::{refgraphtag} Eigenvalues
+:::
+```
+
+This directive has no options, nor will show in the page itself. The mandatory first (and only) argument is the tag that will be used.
+
+#### `refgraphhidden`
+
+The directive `refgraphhidden` can be used to include hidden references, to force edges in the graph. Example code:
+
+```md
+:::{refgraphhidden}
+{doc}`/Chapter1/Vectors`
+{ref}`Sec:LinesAndPlanes`
+{numref}`Sec:DetExtras`
+{prf:ref}`Dfn:DetExtras:VolumeRn`
+:::
+```
+
+This directive has no options, nor arguments, nor will show in the page itself. The included references will however be present in the form of links in the generated graph.
+
+### Code in
