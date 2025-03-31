@@ -118,6 +118,7 @@ def setup(app: Sphinx):
     return {'parallel_write_safe': False}
 
 def process_tag_nodes(app: Sphinx, doctree, fromdocname):
+    print("!!! Ref Graph !!! process_tag_nodes started")
     # get (additional) tags from nodes)
     node_list = []
     tag_list = []
@@ -169,10 +170,12 @@ def process_tag_nodes(app: Sphinx, doctree, fromdocname):
         with open(filename,'a', encoding="utf-8") as outfile:
             outfile.writelines(link_lines)
 
+    print("!!! Ref Graph !!! process_tag_nodes ended")
+
     pass
 
 def process_ref_nodes(app: Sphinx, doctree, fromdocname):
-
+    print("!!! Ref Graph !!! process_ref_nodes started")
     if app.config.ref_graph_internal_links:
         # Collection of all references and create the information for the graph 
         all_refs = []
@@ -237,9 +240,13 @@ def process_ref_nodes(app: Sphinx, doctree, fromdocname):
                     if line not in app.config.ref_graph_remove_links:
                         out.write(line+"\n")
 
+    print("!!! Ref Graph !!! process_ref_nodes ended")
+
     pass
 
 def write_html(app: Sphinx,exc):
+
+    print("!!! Ref Graph !!! write_html started")
 
     # import the (finished) ref_graph temp file and convert it to an adjacency matrix
     # Step 0: load data from temp file as set of lines
@@ -420,9 +427,13 @@ def write_html(app: Sphinx,exc):
     with open(filename,'w') as file:
         file.writelines(data)
 
+    print("!!! Ref Graph !!! write_html ended")
+
     pass
 
 def parse_toc(app:Sphinx):
+
+    print("!!! Ref Graph !!! parse_toc started")
 
     # prepare file
     staticdir = os.path.join(app.builder.outdir, '_static')
@@ -512,6 +523,8 @@ def parse_toc(app:Sphinx):
                 for ref in ref_list[i]:
                     lastout.write(f"{node[0]}.html -> {ref}.html\n")
     
+    print("!!! Ref Graph !!! parse_toc ended")
+
     pass
 
 class RefGraphTagDirective(SphinxDirective):
@@ -555,6 +568,9 @@ class RefGraphIgnoreDirective(SphinxDirective):
         return [ignore_node]
     
 def process_ignore_nodes(app: Sphinx, doctree, fromdocname):
+
+    print("!!! Ref Graph !!! process_ignore_nodes started")
+
     # get (additional) tags from nodes)
     node_list = []
     for node in doctree.traverse(ref_graph_ignore):
@@ -602,5 +618,8 @@ def process_ignore_nodes(app: Sphinx, doctree, fromdocname):
             outfile.writelines(node_lines)
         with open(filename,'a', encoding="utf-8") as outfile:
             outfile.writelines(link_lines)
+
+
+    print("!!! Ref Graph !!! process_ignore_nodes ended")
 
     pass
