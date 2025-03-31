@@ -117,3 +117,9 @@ The directive `refgraph` can be used to _show_ the generated graph. The graph do
 ```
 
 This directive has the addtional option `class`, of which the value will be added to the class of the iframe that is used to show the graph. Example code:
+
+```md
+:::{refgraph}
+:class: dark-light
+:::
+```
