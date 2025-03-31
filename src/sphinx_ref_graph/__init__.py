@@ -371,7 +371,7 @@ def write_html(app: Sphinx,exc):
         with open(html_file,'r',errors='surrogateescape') as html:
             lines = html.readlines()
         for line in lines:
-            line = line.encode('ascii', 'ignore') # test for Tom
+            line = line.encode('ascii', 'ignore').decode('ascii') # test for Tom
             if "<h1" in line:
                 title = line[line.find("<h1")+3:]
                 title = title[title.find(">")+1:]
