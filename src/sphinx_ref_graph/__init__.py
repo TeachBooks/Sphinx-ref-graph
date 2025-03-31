@@ -367,7 +367,7 @@ def write_html(app: Sphinx,exc):
             titles.append(node)
             continue
         html_file = os.path.join(app.builder.outdir, node)
-        with open(html_file,'r',encoding='utf-8') as html:
+        with open(html_file,'r') as html:
             lines = html.readlines()
         for line in lines:
             if "<h1" in line:
