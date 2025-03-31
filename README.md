@@ -99,6 +99,10 @@ An explination of each configuration value:
   - The **Python list** must contain **Python strings**, where each is of the form `"file1 -> file2"`.
   - In the above, `file1` and `file2` must be the paths to `html` files in the compiled book. The paths are assumed to be relative to the main location of the html files of the compiled book.
   - If not empty, each of the entered links will be removed from the graph.
+  - An example:
+    ```yaml
+    ref_graph_remove_links: ['Introduction.html -> Colophon/Acknowledgements.html']
+    ```
 - `ref_graph_group_nodes`: `false` (_default_) or `true`:
   - If `true`, for each tag an extra node will be added.
   - All other nodes with the same tag will obtain a link to this new node.
@@ -154,4 +158,28 @@ The directive `refgraphhidden` can be used to include hidden references, to forc
 
 This directive has no options, nor arguments, nor will show in the page itself. The included references will however be present in the form of links in the generated graph.
 
-### Code in
+### Code in table of contents
+
+> [!CAUTION]
+> The next approach might be consired a _bad practice_. The authors of this extension claim in no way that this is not the case, but however have opted for this option to provide an alternative to a document-by-document basis. A better alternative is provided by the above directives and configuration values.
+
+Within the file `_toc.yml` a user can add a comment behind each line referencing a source file. If this comment contains the text
+```yaml
+ref_graph: {...}
+```
+this extension will parse this comment. `{...}` should be a **Python dictionary**.
+
+Allowed keys for this dictionary are:
+
+- `'tag'`:
+  - The value assigned to this key will be the tag assigned to page in the ToC.
+  - Example:
+    ```yaml
+    - file: 'Chapter1/Vectors.md'  # ref_graph: {'tag': 'Vectors, Lines and Planes'}
+    ```
+  - The alternative with directives is to add
+    ```md
+    :::{refgraphtag} Vectors, Lines and Planes
+    :::
+    ```
+    to the file `'Chapter1/Vectors.md'`.
