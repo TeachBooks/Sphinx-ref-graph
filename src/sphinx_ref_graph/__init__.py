@@ -112,7 +112,7 @@ def setup(app: Sphinx):
 
     app.connect('builder-inited',parse_toc)
 
-    app.connect('build-finished',write_html,priority=10000000000000000000000000000000)
+    app.connect('build-finished',write_html,priority=1000)
 
 
     return {'parallel_write_safe': False}
@@ -384,7 +384,7 @@ def write_html(app: Sphinx,exc):
             titles.append(node)
             continue
         html_file = os.path.join(app.builder.outdir, node)
-        with open(html_file,'r') as html:
+        with open(html_file,'r',errors='surrogateescape') as html:
             lines = html.readlines()
         for line in lines:
             if "<h1" in line:
