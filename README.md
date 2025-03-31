@@ -161,7 +161,7 @@ This directive has no options, nor arguments, nor will show in the page itself. 
 ### Code in table of contents
 
 > [!CAUTION]
-> The next approach might be consired a _bad practice_. The authors of this extension claim in no way that this is not the case, but however have opted for this option to provide an alternative to a document-by-document basis. A better alternative is provided by the above directives and configuration values.
+> The next approach might be consired a _bad practice_. The authors of this extension claim in no way that this is not the case, but however have opted for this option to provide an alternative to a document-by-document basis. An alternative is provided by the above directives and configuration values.
 
 Within the file `_toc.yml` a user can add a comment behind each line referencing a source file. If this comment contains the text
 ```yaml
@@ -177,9 +177,25 @@ Allowed keys for this dictionary are:
     ```yaml
     - file: 'Chapter1/Vectors.md'  # ref_graph: {'tag': 'Vectors, Lines and Planes'}
     ```
-  - The alternative with directives is to add
+    This will assign the tag `Vectors, Lines and Planes` to the page `Chapter1/Vectors.html`.
+    The alternative with directives is to add
     ```md
     :::{refgraphtag} Vectors, Lines and Planes
     :::
     ```
-    to the file `'Chapter1/Vectors.md'`.
+    to the file `Chapter1/Vectors.md`.
+- `'refs'`:
+  - The value should be a **Python list of strings**.
+  - The value assigned to this key will be used to define a hidden reference from the page in the ToC to the page(s) in the value.
+  - Example:
+    ```yaml
+    - file: 'Chapter6/ComplexEigenvalues.md' # ref_graph: {'refs':['Appendices/ComplexNumbers.md']}
+    ```
+    This will create a link in the graph between the nodes related to the pages `Chapter6/ComplexEigenvalues.html` and `Appendices/ComplexNumbers.html`.
+    The alternative with directives is to add
+    ```md
+    :::{refgraphhidden}
+    {doc}`Appendices/ComplexNumbers.md`
+    :::
+    ```
+    to the file `Chapter6/ComplexEigenvalues`.
