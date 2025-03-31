@@ -198,4 +198,7 @@ Allowed keys for this dictionary are:
     {doc}`Appendices/ComplexNumbers.md`
     :::
     ```
-    to the file `Chapter6/ComplexEigenvalues`.
+    to the file `Chapter6/ComplexEigenvalues.md`.
+- `'ignore'`:
+  - The value should be `True` or `False`.
+  - If set to `True`, the relevant node will be entirely removed from the graph.
