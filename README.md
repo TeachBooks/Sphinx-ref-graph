@@ -41,7 +41,7 @@ git+https://github.com/TeachBooks/Sphinx-ref-graph.git
 
 **Step 3: Enable in `_config.yml`**
 
-In your `_config.yml` file, add the extension to the list of Sphinx extra extensions:
+In your `_config.yml` file, add the extension to the list of Sphinx extra extensions (**important**: underscore, not dash this time):
 ```
 sphinx: 
     extra_extensions:
