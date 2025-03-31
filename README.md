@@ -109,6 +109,7 @@ An explination of each configuration value:
   - If `true`, for each tag an extra node will be added.
   - All other nodes with the same tag will obtain a link to this new node.
   - All links pointing to/from another node with the same tag will be altered to point to/from the new node.
+  - The new node will not be clickable.
 - `ref_graph_collapse_group`: `false` (_default_) or `true`:
   - If `True`, similar to ref_graph_group_nodes.
   - In addition all other nodes with the same tag will be removed from the graph.
