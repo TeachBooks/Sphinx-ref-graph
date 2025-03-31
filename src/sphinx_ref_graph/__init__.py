@@ -361,38 +361,32 @@ def write_html(app: Sphinx,exc):
     source_list = [link[0] for link in link_list]
     target_list = [link[1] for link in link_list]
 
-    # try to extract (first) h1 header from html file
+    # try to extract (first) h1 header from html file (disabled for now)
     titles = []
     for node in node_list:
-        if '.html' not in node:
-            titles.append(node)
-            continue
-        html_file = os.path.join(app.builder.outdir, node)
-        with open(html_file,'r',errors='surrogateescape') as html:
-            lines = html.readlines()
-        for line in lines:
-            line = line.encode('ascii', 'ignore').decode('ascii') # test for Tom
-            if "<h1" in line:
-                title = line[line.find("<h1")+3:]
-                title = title[title.find(">")+1:]
-                title = title[:title.find("<")]
-                title = title.replace("\\vect{x}","x")
-                titles.append(title)
-                break
+        # if '.html' not in node:
+        titles.append(node)
+        #     continue
+        # html_file = os.path.join(app.builder.outdir, node)
+        # with open(html_file,'r',errors='surrogateescape') as html:
+        #     lines = html.readlines()
+        # for line in lines:
+        #     line = line.encode('ascii', 'ignore').decode('ascii') # test for Tom
+        #     if "<h1" in line:
+        #         title = line[line.find("<h1")+3:]
+        #         title = title[title.find(">")+1:]
+        #         title = title[:title.find("<")]
+        #         title = title.replace("\\vect{x}","x")
+        #         titles.append(title)
+        #         break
     
-    old_len = len(source_list)
-    source_string = "?".join(source_list)
-    target_string = "?".join(target_list)
+    source_string = "????????".join(source_list)
+    target_string = "????????".join(target_list)
     for i,node in enumerate(node_list):
         source_string = source_string.replace(node,titles[i])
         target_string = target_string.replace(node,titles[i])
-    source_list = source_string.split("?")
-    target_list = target_string.split("?")
-
-    if len(source_list) != old_len:
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("!!!!!!!!!!!!!!! len diff !!!!!!!!!!!")
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    source_list = source_string.split("????????")
+    target_list = target_string.split("????????")
 
     # Create three json/dicts for direct input in JS
     node_dicts = []
