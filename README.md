@@ -227,6 +227,11 @@ Allowed keys for this dictionary are:
     ```
     to the file `genindex.md`.
 
+Any subset of these keys can be used in the comment.
+
+> [!WARNING]
+> Do not use `{` and/or `}` inside the jeys and values in the **Python dictionary**, as the comment will be parsed as a string, where the first `{` after `ref_graph:` will be mathced with the next `}`.
+
 ## Examples and details
 
 To see examples of usage, one can visit the following pages **to be continued**.
