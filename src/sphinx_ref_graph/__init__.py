@@ -112,7 +112,7 @@ def setup(app: Sphinx):
 
     app.connect('builder-inited',parse_toc)
 
-    app.connect('build-finished',write_html)
+    app.connect('build-finished',write_html,priority=10000000000000000000000000000000)
 
 
     return {'parallel_write_safe': False}
