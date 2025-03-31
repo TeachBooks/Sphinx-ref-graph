@@ -93,6 +93,19 @@ An explination of each configuration value:
 - `ref_graph_tag_color`: `{}` (_default_) or **Python dictionary**:
   - The **Python dictionary** must be empty or contain key-value pairs of the form `'tag':'color'`, where `'color'` should be a Javascript recognised color, preferably a hex rgb color.
   - If set to a non-empty dictionary, all nodes with the same tag will be given the provided color and for tags with three or more nodes the extended convex hull will be drawn in the same color.
+  - For all tags that are not a key in this value, a color will be selected cyclically from the set of colors:
+    ```python
+    "#6F1D77", # Light Purple
+    "#0C2340", # Dark Blue
+    "#EC6842", # Orange
+    "#0076C2", # Royal Blue
+    "#E03C31", # Red
+    "#00B8C8", # Turquoise
+    "#EF60A3", # Pink
+    "#009B77", # Forrest Green
+    "#A50034", # Burgundy
+    ```
+    The order in which the tags are encountered define order in which the colors are selected.
   - An example:
     ```yaml
     ref_graph_tag_color: {'Eigenvalues':'#900bee','Matrix operations':'#0cd734'}
