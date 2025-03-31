@@ -118,7 +118,7 @@ def setup(app: Sphinx):
     return {'parallel_write_safe': False}
 
 def process_tag_nodes(app: Sphinx, doctree, fromdocname):
-    print("!!! Ref Graph !!! process_tag_nodes started")
+    # print("!!! Ref Graph !!! process_tag_nodes started")
     # get (additional) tags from nodes)
     node_list = []
     tag_list = []
@@ -170,12 +170,12 @@ def process_tag_nodes(app: Sphinx, doctree, fromdocname):
         with open(filename,'a', encoding="utf-8") as outfile:
             outfile.writelines(link_lines)
 
-    print("!!! Ref Graph !!! process_tag_nodes ended")
+    # print("!!! Ref Graph !!! process_tag_nodes ended")
 
     pass
 
 def process_ref_nodes(app: Sphinx, doctree, fromdocname):
-    print("!!! Ref Graph !!! process_ref_nodes started")
+    # print("!!! Ref Graph !!! process_ref_nodes started")
     if app.config.ref_graph_internal_links:
         # Collection of all references and create the information for the graph 
         all_refs = []
@@ -240,7 +240,7 @@ def process_ref_nodes(app: Sphinx, doctree, fromdocname):
                     if line not in app.config.ref_graph_remove_links:
                         out.write(line+"\n")
 
-    print("!!! Ref Graph !!! process_ref_nodes ended")
+    # print("!!! Ref Graph !!! process_ref_nodes ended")
 
     pass
 
