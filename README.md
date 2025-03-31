@@ -202,3 +202,15 @@ Allowed keys for this dictionary are:
 - `'ignore'`:
   - The value should be `True` or `False`.
   - If set to `True`, the relevant node will be entirely removed from the graph.
+  - If set to any other value, nothing will happen.
+  - Example:
+    ```yaml
+    - file: genindex.md # ref_graph: {'ignore':True}
+    ```
+    This will remove the node associated with `genindex.html` and any links in the graph to this node from the graph.
+    The alternative with directives is to add
+    ```md
+    :::{refgraphignore}
+    :::
+    ```
+    to the file `genindex.md`.
