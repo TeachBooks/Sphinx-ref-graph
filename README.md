@@ -17,7 +17,9 @@ This extension provides several Sphinx directives:
 - `refgraphtag`:
   - This directive can be used to assign a tag to a page, which will be used in the graph to group nodes together.
 - `refgraphhidden`:
-  - This directive can be used to include hidden references, to force edges in the graph. 
+  - This directive can be used to include hidden references, to force edges in the graph.
+- `refgraphignore`:
+  - This directive can be used to remove the relevant node entirely from the graph.
 
 ## Installation
 
@@ -157,6 +159,16 @@ The directive `refgraphhidden` can be used to include hidden references, to forc
 ```
 
 This directive has no options, nor arguments, nor will show in the page itself. The included references will however be present in the form of links in the generated graph.
+
+#### `refgraphignore`
+
+The directive `refgraphignore` can be used to remove the relevant node entirely from the graph. Example code:
+```md
+:::{refgraphignore}
+:::
+```
+
+This directive has no options, nor arguments, nor will show in the page itself. The relevant node and all links to this node will be removed from the graph.
 
 ### Code in table of contents
 
