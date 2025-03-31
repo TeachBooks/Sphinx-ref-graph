@@ -230,7 +230,7 @@ Allowed keys for this dictionary are:
 Any subset of these keys can be used in the comment.
 
 > [!WARNING]
-> Do not use `{` and/or `}` inside the jeys and values in the **Python dictionary**, as the comment will be parsed as a string, where the first `{` after `ref_graph:` will be mathced with the next `}`.
+> Do not use `{` and/or `}` inside the keys and values in the **Python dictionary**, as the comment will be parsed as a string, where the first `{` after `ref_graph:` will be mathced with the next `}`.
 
 ## Examples and details
 
