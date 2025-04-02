@@ -376,13 +376,13 @@ def write_html(app: Sphinx,exc):
         title = title[:title.find(u'\u2014')]
         titles.append(title.strip())
     
-    source_string = "????????".join(source_list)
-    target_string = "????????".join(target_list)
+    source_string = "????????"+"????????".join(source_list)+"????????"
+    target_string = "????????"+"????????".join(target_list)+"????????"
     for i,node in enumerate(node_list):
-        source_string = source_string.replace(node,titles[i])
-        target_string = target_string.replace(node,titles[i])
-    source_list = source_string.split("????????")
-    target_list = target_string.split("????????")
+        source_string = source_string.replace("?"+node+"?","?"+titles[i]+"?")
+        target_string = target_string.replace("?"+node+"?","?"+titles[i]+"?")
+    source_list = source_string.split("????????")[1:-1]
+    target_list = target_string.split("????????")[1:-1]
 
     # Create three json/dicts for direct input in JS
     node_dicts = []
@@ -397,14 +397,11 @@ def write_html(app: Sphinx,exc):
     
     link_dicts = []
     for i,source in enumerate(source_list):
-        try:
-            link_dict = {"source_label" : source,
-                         "source" : titles.index(source),
-                         "target_label" : target_list[i],
-                         "target" : titles.index(target_list[i])}
-            link_dicts.append(link_dict)
-        except:
-            pass
+        link_dict = {"source_label" : source,
+                    "source" : titles.index(source),
+                    "target_label" : target_list[i],
+                    "target" : titles.index(target_list[i])}
+        link_dicts.append(link_dict)
 
     import_html = os.path.join(os.path.dirname(__file__), 'static', "ref_graph.html")
     with open(import_html,'r') as html:
@@ -421,7 +418,7 @@ def write_html(app: Sphinx,exc):
     with open(filename,'w') as file:
         file.writelines(data)
 
-    pass
+    return
 
 def parse_toc(app:Sphinx):
 
