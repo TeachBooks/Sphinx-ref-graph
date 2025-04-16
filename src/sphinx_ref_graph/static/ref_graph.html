@@ -3,11 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <title>D3.js Dynamic Graph from References and Tags</title>
+  <script>
+    fetch('../index.html')
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+    
+        // Basis-URL bepalen van A.html (in dit geval 1 map hoger)
+        const baseURL = new URL('../A.html', window.location.href);
+    
+        doc.querySelectorAll('link[rel="stylesheet"], style').forEach(styleEl => {
+          if (styleEl.tagName.toLowerCase() === 'link') {
+            const href = styleEl.getAttribute('href');
+    
+            // Maak href absoluut t.o.v. A.html
+            const absoluteHref = new URL(href, baseURL).href;
+            const fixedLink = document.createElement('link');
+            fixedLink.rel = 'stylesheet';
+            fixedLink.href = absoluteHref;
+    
+            document.head.appendChild(fixedLink);
+          } else {
+            // Inline <style> kan gewoon gekopieerd worden
+            document.head.appendChild(styleEl.cloneNode(true));
+          }
+        });
+      });
+    </script>
   <style>
     body {
       margin: 0;
       overflow: hidden;
-      font-family: Helvetica, sans-serif;
+      /* font-family: Helvetica, sans-serif; */
     }
     svg {
       position: absolute;
@@ -24,7 +52,7 @@
       opacity: 0.3;
     }
     .legend {
-      font-family: Helvetica, sans-serif;
+      /* font-family: Helvetica, sans-serif; */
       font-size: 14px;
       fill: #000;
     }
