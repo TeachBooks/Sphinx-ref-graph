@@ -10,14 +10,14 @@
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
     
-        // Basis-URL bepalen van A.html (in dit geval 1 map hoger)
-        const baseURL = new URL('../A.html', window.location.href);
+        // Basis-URL bepalen van index.html (in dit geval 1 map hoger)
+        const baseURL = new URL('../index.html', window.location.href);
     
         doc.querySelectorAll('link[rel="stylesheet"], style').forEach(styleEl => {
           if (styleEl.tagName.toLowerCase() === 'link') {
             const href = styleEl.getAttribute('href');
     
-            // Maak href absoluut t.o.v. A.html
+            // Maak href absoluut t.o.v. index.html
             const absoluteHref = new URL(href, baseURL).href;
             const fixedLink = document.createElement('link');
             fixedLink.rel = 'stylesheet';
