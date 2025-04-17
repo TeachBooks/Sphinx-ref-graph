@@ -243,6 +243,20 @@ def process_ref_nodes(app: Sphinx, doctree, fromdocname):
 
 def write_html(app: Sphinx,exc):
 
+    # load ToC contents
+    toc_path = os.path.join(app.srcdir,'_toc.yml')
+    with open(toc_path,'r') as toc_file:
+        toc_lines = toc_file.readlines()
+
+    # extract root file
+    for line in toc_lines:
+        if "root:" not in line:
+            continue
+        INDEX = line.find("root:")+5
+        remainder = line[INDEX:].strip()
+        rootfile = remainder.split("#")[0].strip()
+        roothtml = rootfile.replace('.md','.html').replace('.rst','.html').replace('.ipynb','.html')
+
     # import the (finished) ref_graph temp file and convert it to an adjacency matrix
     # Step 0: load data from temp file as set of lines
     staticdir = os.path.join(app.builder.outdir, '_static')
@@ -413,6 +427,8 @@ def write_html(app: Sphinx,exc):
             data[i] = "const links = "+str(link_dicts)+";"
         if '<color-line>' in line:
             data[i] = "const groupColors = "+str(color_dict)+";"
+        if "<rootholder>" in line:
+            data[i] = line.replace("<rootholder>",roothtml)
 
     filename = os.path.join(staticdir,app.config.ref_graph_html_file)
     with open(filename,'w') as file:

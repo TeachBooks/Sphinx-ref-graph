@@ -4,20 +4,20 @@
   <meta charset="UTF-8" />
   <title>D3.js Dynamic Graph from References and Tags</title>
   <script>
-    fetch('../index.html')
+    fetch('../<rootholder>')
       .then(res => res.text())
       .then(html => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
     
-        // Basis-URL bepalen van index.html (in dit geval 1 map hoger)
-        const baseURL = new URL('../index.html', window.location.href);
+        // Basis-URL bepalen van roothtml (in dit geval 1 map hoger)
+        const baseURL = new URL('../<rootholder>', window.location.href);
     
         doc.querySelectorAll('link[rel="stylesheet"], style').forEach(styleEl => {
           if (styleEl.tagName.toLowerCase() === 'link') {
             const href = styleEl.getAttribute('href');
     
-            // Maak href absoluut t.o.v. index.html
+            // Maak href absoluut t.o.v. roothtml
             const absoluteHref = new URL(href, baseURL).href;
             const fixedLink = document.createElement('link');
             fixedLink.rel = 'stylesheet';
