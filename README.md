@@ -1,4 +1,19 @@
-# Sphinx Reference Graph
+````{margin}
+```{attributiongrey} Attribution
+:class: attribution
+This page reuses MIT licensed content from {cite:t}`sphinx-interactive-graph`. {fa}`quote-left`{ref}`Find out more here.<external_resources>`
+```
+
+```{admonition} User types
+:class: tip
+This section is useful for user type 3-5.
+```
++++
+{bdg-primary}`Sphinx Extension`
+
+````
+
+# Interactive graph
 
 ## Introduction
 
@@ -253,5 +268,4 @@ To see examples of usage, one can visit the following pages **to be continued**.
 ## Contribute
 
 This tool's repository is stored on [GitHub](https://github.com/TeachBooks/sphinx-ref-graph/). If you'd like to contribute, you can create a fork and open a pull request on the [GitHub repository](https://github.com/TeachBooks/sphinx-ref-graph/).
-
-The `README.md` of the branch `main` is also part of the [TeachBooks manual](https://teachbooks.io/manual/intro.html) as a submodule.
+The `README.md` of the branch `manual` is also part of the [TeachBooks manual](https://teachbooks.io/manual).
