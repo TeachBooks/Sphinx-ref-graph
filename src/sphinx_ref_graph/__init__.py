@@ -248,7 +248,7 @@ def write_html(app: Sphinx,exc):
     with open(toc_path,'r') as toc_file:
         toc_lines = toc_file.readlines()
 
-    # extract root file
+    # extract root file and Window.MathJax script
     for line in toc_lines:
         if "root:" not in line:
             continue
@@ -256,6 +256,13 @@ def write_html(app: Sphinx,exc):
         remainder = line[INDEX:].strip()
         rootfile = remainder.split("#")[0].strip()
         roothtml = rootfile.replace('.md','.html').replace('.rst','.html').replace('.ipynb','.html')
+        break
+    file = os.path.join(app.builder.outdir,roothtml)
+    with open(file,"r", encoding="utf-8") as temp:
+        lines = temp.readlines()
+    for WindowMathJax_line in lines:
+        if "window.MathJax" in WindowMathJax_line:
+            break
 
     # import the (finished) ref_graph temp file and convert it to an adjacency matrix
     # Step 0: load data from temp file as set of lines
@@ -429,6 +436,8 @@ def write_html(app: Sphinx,exc):
             data[i] = "const groupColors = "+str(color_dict)+";"
         if "<rootholder>" in line:
             data[i] = line.replace("<rootholder>",roothtml)
+        if "<!-- Window.MathJax placeholder -->" in line:
+            data[i] = WindowMathJax_line
 
     filename = os.path.join(staticdir,app.config.ref_graph_html_file)
     with open(filename,'w') as file:

@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>D3.js Dynamic Graph from References and Tags</title>
+  <!-- Window.MathJax placeholder -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     fetch('../<rootholder>')
       .then(res => res.text())
@@ -169,8 +171,6 @@ function computeExpandedHull(groupNodes, margin) {
     .force("center", d3.forceCenter(width / 2, height / 2).strength(0.1))
     .on("tick", ticked)
     .on("end", () => {
-      // Once the simulation ends, store final positions
-      saveNodePositions(nodes);
     });
 
   // Normal start
@@ -214,15 +214,28 @@ function computeExpandedHull(groupNodes, margin) {
     });
 
   // Create labels
-  const label = gContainer.selectAll(".label")
-    .data(nodes)
-    .enter()
-    .append("text")
-    .style("font-size", "12px")
-    .attr("class", "label")
-    .attr("text-anchor", "middle")
-    .attr("dy", d => -d.radius - 5)
-    .text(d => d.name);
+
+// Bewaar de foreignObject in een aparte selectie
+const labelWidth = 120;
+
+const labelSelection = gContainer.selectAll(".label-fo")
+  .data(nodes)
+  .enter()
+  .append("foreignObject")
+  .attr("class", "label-fo")
+  .attr("width", labelWidth)
+  .attr("height", 1) // tijdelijke dummyhoogte
+  .style("overflow", "visible")
+  .append("xhtml:div")
+  .attr("class", "label")
+  .style("font-size", "12px")
+  .style("width", `${labelWidth}px`)
+  .style("word-wrap", "break-word")
+  .style("word-break", "break-word")
+  .style("text-align", "center")
+  .style("display", "inline-block")
+  .style("padding", "2px 4px") // optioneel
+  .html(d => d.name);
 
   function ticked() {
     link
@@ -235,9 +248,16 @@ function computeExpandedHull(groupNodes, margin) {
       .attr("cx", d => d.x)
       .attr("cy", d => d.y);
 
-    label
-      .attr("x", d => d.x)
-      .attr("y", d => d.y);
+    gContainer.selectAll(".label-fo")
+  .attr("transform", function(d) {
+    const fo = this;
+    const div = fo.firstChild;
+    const bbox = div.getBoundingClientRect();
+    const dynamicHeight = bbox.height || 20;
+    const x = d.x - labelWidth / 2;
+    const y = d.y - d.radius - dynamicHeight;
+    return `translate(${x}, ${y})`;
+  });
     
     // --- Compute and render hulls for each tag group ---
     const groups = d3.group(nodes.filter(d => d.tag), d => d.tag);
