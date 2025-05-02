@@ -13,7 +13,7 @@ This section is useful for user type 3-5.
 
 ````
 
-(interactive_graph_content)
+(interactive_graph_content)=
 # Interactive graph of book content
 
 ## Introduction
