@@ -248,7 +248,7 @@ Any subset of these keys can be used in the comment.
 
 ## Examples and details
 
-To see examples of usage, one can visit the following pages **to be continued**.
+An example of a page using this extension can be found at https://douden.github.io/openlabook/GoC.html.
 
 ## Contribute
 
