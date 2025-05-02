@@ -202,8 +202,9 @@ This directive has no options, nor arguments, nor will show in the page itself. 
 
 ### Code in table of contents
 
-> [!CAUTION]
-> The next approach might be considered a _bad practice_. The authors of this extension claim in no way that this is not the case, but however have opted for this option to provide an alternative to directives.
+:::{caution}
+The next approach might be considered a _bad practice_. The authors of this extension claim in no way that this is not the case, but however have opted for this option to provide an alternative to directives.
+:::
 
 Within the file `_toc.yml` a user can add a comment behind each line referencing a source file. If this comment contains the text
 ```yaml
@@ -259,12 +260,14 @@ Allowed keys for this dictionary are:
 
 Any subset of these keys can be used in the comment.
 
-> [!WARNING]
-> Do not use `{` and/or `}` inside the keys and values in the **Python dictionary**, as the comment will be parsed as a string, where the first `{` after `ref_graph:` will be matched with the next `}`.
+
+:::{warning}
+Do not use `{` and/or `}` inside the keys and values in the **Python dictionary**, as the comment will be parsed as a string, where the first `{` after `ref_graph:` will be matched with the next `}`.
+:::
 
 ## Examples and details
 
-To see examples of usage, one can visit the following pages **to be continued**.
+An example of a page using this extension can be found at https://douden.github.io/openlabook/GoC.html.
 
 ## Contribute
 
