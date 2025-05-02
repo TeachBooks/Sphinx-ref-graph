@@ -254,4 +254,4 @@ An example of a page using this extension can be found at https://douden.github.
 
 This tool's repository is stored on [GitHub](https://github.com/TeachBooks/sphinx-ref-graph/). If you'd like to contribute, you can create a fork and open a pull request on the [GitHub repository](https://github.com/TeachBooks/sphinx-ref-graph/).
 
-The `README.md` of the branch `main` is also part of the [TeachBooks manual](https://teachbooks.io/manual/intro.html) as a submodule.
+The `README.md` of the branch `manual` is also part of the [TeachBooks manual](https://teachbooks.io/manual).
