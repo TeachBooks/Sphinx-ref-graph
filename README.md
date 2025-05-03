@@ -1,9 +1,4 @@
 ````{margin}
-```{attributiongrey} Attribution
-:class: attribution
-This page reuses MIT licensed content from {cite:t}`sphinx-interactive-graph`. {fa}`quote-left`{ref}`Find out more here.<external_resources>`
-```
-
 ```{admonition} User types
 :class: tip
 This section is useful for user type 3-5.
