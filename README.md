@@ -29,14 +29,14 @@ To use this extension, follow these steps:
 
 Install the module `sphinx-ref-graph` package using `pip`:
 ```
-pip install git+https://github.com/TeachBooks/Sphinx-ref-graph.git
+pip install sphinx-ref-graph
 ```
     
 **Step 2: Add to `requirements.txt`**
 
 Make sure that the package is included in your project's `requirements.txt` to track the dependency:
 ```
-git+https://github.com/TeachBooks/Sphinx-ref-graph.git
+sphinx-ref-graph
 ```
 
 **Step 3: Enable in `_config.yml`**
