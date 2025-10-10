@@ -472,12 +472,16 @@ def parse_toc(app:Sphinx):
         # ignore commented lines
         if toc_line[0] == "#":
             continue
-        # ignore no-file lines (except root line)
+        # ignore no-file lines (except root line and external links)
         if "- file" not in toc_line:
             if "root" not in toc_line:
-                continue
+                if "- external" not in toc_line:
+                    continue
+                else:
+                    toc_line = toc_line.replace('- external','- file')
+                    continue
             else:
-                toc_line.replace('root','- file')
+                toc_line = toc_line.replace('root','- file')
         # extract information
         if "#" not in toc_line:
             # no comment in line
