@@ -7,6 +7,7 @@ import os
 from sphinx.addnodes import number_reference
 import ast
 from bs4 import BeautifulSoup
+import re
 
 FIXED_COLORS = [
     "#6F1D77", # Light Purple
@@ -479,6 +480,8 @@ def parse_toc(app:Sphinx):
                     continue
                 else:
                     toc_line = toc_line.replace('- external','- file')
+                    expr = r"https://github\.com/(.+?)blob"
+                    toc_line = re.sub(expr,lambda m: "_git/github.com_" + m.group(1).replace("/", "_") + "_", toc_line)
                     continue
             else:
                 toc_line = toc_line.replace('root','- file')
