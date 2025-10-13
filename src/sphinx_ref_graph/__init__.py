@@ -481,8 +481,7 @@ def parse_toc(app:Sphinx):
                 else:
                     toc_line = toc_line.replace('- external','- file')
                     expr = r"https://github\.com/(.+?)blob"
-                    toc_line = re.sub(expr,lambda m: "_git/github.com_" + m.group(1).replace("/", "_") + "_", toc_line)
-                    continue
+                    toc_line = re.sub(expr,lambda m: "_git/github.com_" + m.group(1).replace("/", "_") + "_", toc_line).replace("__","")
             else:
                 toc_line = toc_line.replace('root','- file')
         # extract information
